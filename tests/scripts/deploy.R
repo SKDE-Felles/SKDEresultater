@@ -1,0 +1,29 @@
+install.packages("remotes")
+
+remotes::install_github("skde_felles/portal", ref = Sys.getenv("TRAVIS_BRANCH"))
+
+rsconnect::setAccountInfo(name   = Sys.getenv("shinyapps_name"),
+                          token  = Sys.getenv("shinyapps_token"),
+                          secret = Sys.getenv("shinyapps_secret")
+                          )
+
+git_hash <- Sys.getenv("TRAVIS_COMMIT")
+github_account <- Sys.getenv("TRAVIS_REPO_SLUG")
+
+if (Sys.getenv("TRAVIS_BRANCH") == "master") {
+  shinymap::launch_app(
+    dataset = all_data,
+    publish_app = TRUE,
+    name = "portal",
+    git_hash = git_hash,
+    github_repo = github_account
+  )
+} else {
+  shinymap::launch_app(
+    dataset = all_data,
+    publish_app = TRUE,
+    name = "exp_portal",
+    git_hash = git_hash,
+    github_repo = github_account
+  )
+}
