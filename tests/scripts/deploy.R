@@ -1,6 +1,6 @@
 install.packages("remotes")
 
-remotes::install_github("skde_felles/portal", ref = Sys.getenv("TRAVIS_BRANCH"))
+remotes::install_github("skde_felles/SKDEresultater", ref = Sys.getenv("TRAVIS_BRANCH"))
 
 rsconnect::setAccountInfo(name   = Sys.getenv("shinyapps_name"),
                           token  = Sys.getenv("shinyapps_token"),
@@ -14,7 +14,7 @@ if (Sys.getenv("TRAVIS_BRANCH") == "master") {
   shinymap::launch_app(
     dataset = all_data,
     publish_app = TRUE,
-    name = "portal",
+    name = "SKDEresultater",
     git_hash = git_hash,
     github_repo = github_account
   )
@@ -22,7 +22,7 @@ if (Sys.getenv("TRAVIS_BRANCH") == "master") {
   shinymap::launch_app(
     dataset = all_data,
     publish_app = TRUE,
-    name = "exp_portal",
+    name = "exp_SKDEresultater",
     git_hash = git_hash,
     github_repo = github_account
   )
