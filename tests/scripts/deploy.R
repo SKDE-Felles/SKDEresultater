@@ -11,7 +11,7 @@ git_hash <- Sys.getenv("TRAVIS_COMMIT")
 github_account <- Sys.getenv("TRAVIS_REPO_SLUG")
 
 if (Sys.getenv("TRAVIS_BRANCH") == "master") {
-  shinymap::launch_app(
+  SKDEresultater::launch_app(
     dataset = all_data,
     publish_app = TRUE,
     name = "SKDEresultater",
@@ -19,7 +19,7 @@ if (Sys.getenv("TRAVIS_BRANCH") == "master") {
     github_repo = github_account
   )
 } else {
-  shinymap::launch_app(
+  SKDEresultater::launch_app(
     dataset = all_data,
     publish_app = TRUE,
     name = "exp_SKDEresultater",

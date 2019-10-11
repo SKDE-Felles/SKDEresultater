@@ -34,7 +34,7 @@ launch_app <- function(dataset = NULL,
 #' Create an appDir for shiny::runApp and rsconnect::deployApp
 #'
 #' Create a directory in tempdir() where the installed version of
-#' shinymap package is copied and the data is saved.
+#' SKDEresultater package is copied and the data is saved.
 #' This directory, with its content, will be deployd to or ran by shiny.
 #'
 #' @param app_data The data to be saved in the directory, to be used by the app
