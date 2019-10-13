@@ -1,0 +1,28 @@
+a {
+  color: #808080;
+}
+h1 {
+    color: #003A8C;
+}
+
+.year-slider .irs-bar {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.year-slider .irs-bar-edge {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.year-slider .irs-grid-pol.small {
+    height: 0px;
+}
+
+.year-slider .irs-min {
+    visibility:hidden !important;
+}
+
+.year-slider .irs-max {
+    visibility:hidden !important;
+}
