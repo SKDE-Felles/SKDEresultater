@@ -47,7 +47,7 @@ shiny::shinyServer(
 
     output$plot <- shiny::renderPlot({
       data_to_plot <- dplyr::filter(SKDEresultater::testdata, SKDEresultater::testdata$bohf %in% input$valgtBo)
-      if (isFALSE(getOption("shiny.testmode"))) {
+      if (!isTRUE(getOption("shiny.testmode"))) {
         ggplot2::ggplot(data = data_to_plot,
                         ggplot2::aes(x = dato, y = tid_min)) +
           ggplot2::geom_point(ggplot2::aes(color = bohf)) +
