@@ -55,7 +55,7 @@ create_appdir <- function(app_data = NULL,
   # Create main directory
   dir.create(tmpshinydir)
   # Copy the installed version of the portal package to the directory
-  file.copy(system.file("app", package = "portal"), tmpshinydir, recursive = TRUE)
+  file.copy(system.file("app", package = "SKDEresultater"), tmpshinydir, recursive = TRUE)
   # Create data folder
   dir.create(paste0(tmpshinydir, "/", "app/data"))
   # Save the data to a .RData file
