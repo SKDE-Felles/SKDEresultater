@@ -12,7 +12,7 @@ github_account <- Sys.getenv("TRAVIS_REPO_SLUG")
 
 if (Sys.getenv("TRAVIS_BRANCH") == "master") {
   SKDEresultater::launch_app(
-    dataset = all_data,
+    dataset = SKDEresultater::testdata,
     publish_app = TRUE,
     name = "SKDEresultater",
     git_hash = git_hash,
