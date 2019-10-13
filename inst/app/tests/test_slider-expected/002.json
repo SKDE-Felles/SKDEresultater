@@ -88,7 +88,7 @@
       ]
     },
     "plot": {
-      "src": "[image data sha1: 05f35f2f008598ad2ed16aabe6c2c99dd0c245ee]",
+      "src": "[image data sha1: 5de2f780003ddfcb82438efcfe000b1875583835]",
       "width": 714,
       "height": 400,
       "coordmap": {
@@ -105,8 +105,8 @@
               "y": null
             },
             "domain": {
-              "left": 17115.3,
-              "right": 18230.7,
+              "left": 17116.4,
+              "right": 18229.6,
               "bottom": -3.25,
               "top": 68.25
             },

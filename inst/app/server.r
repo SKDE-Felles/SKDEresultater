@@ -50,18 +50,22 @@ shiny::shinyServer(
       ggplot2::ggplot(data = data_to_plot,
                       ggplot2::aes(x = dato, y = tid_min)) +
         ggplot2::geom_point(ggplot2::aes(color = bohf)) +
-        ggplot2::geom_hline(yintercept = median(data_to_plot$tid_min), linetype = "dashed", color = "red") +
+        ggplot2::geom_hline(yintercept = median(data_to_plot$tid_min),
+                            linetype = "dashed",
+                            color = "red") +
         ggplot2::ylim(0, max(SKDEresultater::testdata$tid_min) + 1) +
-        ggplot2::xlim(min(SKDEresultater::testdata$dato) - 1, max(SKDEresultater::testdata$dato) + 1) +
+        ggplot2::xlim(min(input$valgtDato),
+                      max(input$valgtDato)) +
         ggplot2::labs(x = "Dato", y = "Antall minutter")
-    })
+      })
 
     output$pick_dates <- shiny::renderUI({
       shiny::sliderInput("valgtDato",
                          "Datoer:",
                          min = min(SKDEresultater::testdata$dato),
                          max = max(SKDEresultater::testdata$dato),
-                         value = c(min(SKDEresultater::testdata$dato), max(SKDEresultater::testdata$dato)),
+                         value = c(min(SKDEresultater::testdata$dato),
+                                   max(SKDEresultater::testdata$dato)),
                          timeFormat = "%d.%m.%Y")
     })
 
