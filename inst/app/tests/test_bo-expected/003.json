@@ -83,38 +83,30 @@
       ]
     },
     "plot": {
-      "src": "[image data sha1: d1dba065269d899ce0af1f745110ddf6b9f193be]",
+      "src": "[image data sha1: a7ff82ed7dd99c8e418e4660b430d85963290b60]",
       "width": 714,
       "height": 400,
       "coordmap": {
         "panels": [
           {
-            "panel": 1,
-            "row": 1,
-            "col": 1,
-            "panel_vars": {
-
+            "domain": {
+              "left": -0.04,
+              "right": 1.04,
+              "bottom": -0.04,
+              "top": 1.04
+            },
+            "range": {
+              "left": 0,
+              "right": 714,
+              "bottom": 399,
+              "top": -1
             },
             "log": {
               "x": null,
               "y": null
             },
-            "domain": {
-              "left": 17116.4,
-              "right": 18229.6,
-              "bottom": -3.25,
-              "top": 68.25
-            },
             "mapping": {
-              "colour": "bohf",
-              "x": "dato",
-              "y": "tid_min"
-            },
-            "range": {
-              "left": 33.1279312159917,
-              "right": 624.213206494475,
-              "bottom": 368.509178173071,
-              "top": 5.47945205479452
+
             }
           }
         ],

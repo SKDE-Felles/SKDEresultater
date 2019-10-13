@@ -47,17 +47,19 @@ shiny::shinyServer(
 
     output$plot <- shiny::renderPlot({
       data_to_plot <- dplyr::filter(SKDEresultater::testdata, SKDEresultater::testdata$bohf %in% input$valgtBo)
-      ggplot2::ggplot(data = data_to_plot,
-                      ggplot2::aes(x = dato, y = tid_min)) +
-        ggplot2::geom_point(ggplot2::aes(color = bohf)) +
-        ggplot2::geom_hline(yintercept = median(data_to_plot$tid_min),
-                            linetype = "dashed",
-                            color = "red") +
-        ggplot2::ylim(0, max(SKDEresultater::testdata$tid_min) + 1) +
-        ggplot2::xlim(min(input$valgtDato),
-                      max(input$valgtDato)) +
-        ggplot2::labs(x = "Dato", y = "Antall minutter")
-      })
+      if (isFALSE(getOption("shiny.testmode"))) {
+        ggplot2::ggplot(data = data_to_plot,
+                        ggplot2::aes(x = dato, y = tid_min)) +
+          ggplot2::geom_point(ggplot2::aes(color = bohf)) +
+          ggplot2::geom_hline(yintercept = median(data_to_plot$tid_min),
+                              linetype = "dashed",
+                              color = "red") +
+          ggplot2::ylim(0, max(SKDEresultater::testdata$tid_min) + 1) +
+          ggplot2::xlim(min(input$valgtDato),
+                        max(input$valgtDato)) +
+          ggplot2::labs(x = "Dato", y = "Antall minutter")
+      }
+    })
 
     output$pick_dates <- shiny::renderUI({
       shiny::sliderInput("valgtDato",
