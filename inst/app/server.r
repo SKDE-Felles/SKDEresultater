@@ -63,7 +63,7 @@ shiny::shinyServer(
                          "Datoer:",
                          min = min(SKDEresultater::testdata$dato),
                          max = max(SKDEresultater::testdata$dato),
-                         value = c(min(SKDEresultater::testdata$dato),
+                         value = c(max(SKDEresultater::testdata$dato) - 365,
                                    max(SKDEresultater::testdata$dato)),
                          timeFormat = "%d.%m.%Y")
     })
