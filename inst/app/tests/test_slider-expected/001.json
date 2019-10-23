@@ -7,7 +7,7 @@
       "Nordland"
     ],
     "valgtDato": [
-      "2017-01-01",
+      "2018-10-10",
       "2019-10-10"
     ]
   },
@@ -52,7 +52,7 @@
       ]
     },
     "pick_dates": {
-      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"valgtDato\">Datoer:<\/label>\n  <input class=\"js-range-slider\" id=\"valgtDato\" data-type=\"double\" data-min=\"1483228800000\" data-max=\"1570665600000\" data-from=\"1483228800000\" data-to=\"1570665600000\" data-step=\"86400000\" data-grid=\"true\" data-grid-num=\"9.92156862745098\" data-grid-snap=\"false\" data-prettify-separator=\",\" data-prettify-enabled=\"true\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"date\" data-time-format=\"%d.%m.%Y\"/>\n<\/div>",
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"valgtDato\">Datoer:<\/label>\n  <input class=\"js-range-slider\" id=\"valgtDato\" data-type=\"double\" data-min=\"1483228800000\" data-max=\"1570665600000\" data-from=\"1539129600000\" data-to=\"1570665600000\" data-step=\"86400000\" data-grid=\"true\" data-grid-num=\"9.92156862745098\" data-grid-snap=\"false\" data-prettify-separator=\",\" data-prettify-enabled=\"true\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"date\" data-time-format=\"%d.%m.%Y\"/>\n<\/div>",
       "deps": [
         {
           "name": "ionrangeslider",
