@@ -18,26 +18,26 @@ dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30, xmin = 
   names(farger) <- boomr
   ymax <- plyr::round_any(max(all_data$tid_min) + 1, 10, f = ceiling)
 
-  ggplot2::ggplot(data = data_to_plot %>%
+  ggplot(data = data_to_plot %>%
         dplyr::filter(dplyr::between(dato, xmin, xmax)),
-        ggplot2::aes(x = dato, y = tid_min)) +
-    ggplot2::geom_point(aes(color = bohf)) +
-    ggplot2::geom_hline(aes(yintercept = ref_line)) +
-    ggplot2::geom_hline(yintercept = median(all_data$tid_min),
+        aes(x = dato, y = tid_min)) +
+    geom_point(aes(color = bohf)) +
+    geom_hline(aes(yintercept = ref_line)) +
+    geom_hline(yintercept = median(all_data$tid_min),
                linetype = "dashed",
                color = "red") +
-    ggplot2::scale_y_continuous(name = "Antall minutter",
+    scale_y_continuous(name = "Antall minutter",
                                 limits = c(0, ymax),
                                 breaks = round(seq(0, ymax, length.out = 4))) +
-    ggplot2::scale_x_date(name = "Dato",
+    scale_x_date(name = "Dato",
                           limits = c(xmin, xmax),
                           breaks = round(seq(xmin, xmax, length.out = 6)),
                           date_labels = "%m.%Y") +
-    ggplot2::scale_color_manual(name = "Boområde", values = farger) +
-    ggplot2::annotate("label", x = xmax, y = ref_line,
+    scale_color_manual(name = "Boområde", values = farger) +
+    annotate("label", x = xmax, y = ref_line,
                       label = paste0("ref-line = ", ref_line)) +
     ggthemes::theme_tufte() +
-    ggplot2::theme(axis.text = element_text(size = 14),
+    theme(axis.text = element_text(size = 14),
           axis.title = element_text(size = 22),
           axis.ticks = element_blank(),
           axis.title.x = element_text(margin = margin(t = 25)),
