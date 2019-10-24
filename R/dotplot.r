@@ -34,8 +34,10 @@ dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30, xmin = 
                           breaks = round(seq(xmin, xmax, length.out = 6)),
                           date_labels = "%m.%Y") +
     scale_color_manual(name = "Boområde", values = farger) +
-    annotate("label", x = xmax, y = ref_line,
+    annotate("label", x = xmin, y = ref_line,
                       label = paste0("ref-line = ", ref_line)) +
+    annotate("label", x = xmin, y = median(all_data$tid_min),
+                      label = paste0("Median = ", median(all_data$tid_min))) +
     ggthemes::theme_tufte() +
     theme(axis.text = element_text(size = 14),
           axis.title = element_text(size = 22),
