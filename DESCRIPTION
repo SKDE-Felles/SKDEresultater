@@ -13,13 +13,17 @@ RoxygenNote: 6.1.1
 BugReports: https://github.com/skde-felles/SKDEresultater/issues
 URL: https://skde-felles.github.io/SKDEresultater
 Imports:
-  shiny,
-  shinythemes,
-  shinyWidgets,
-  rsconnect,
-  ggplot2,
-  magrittr,
-  dplyr
+    shiny,
+    shinythemes,
+    shinyWidgets,
+    rsconnect,
+    ggplot2,
+    magrittr,
+    dplyr,
+    shinymap (>= 0.8.0),
+    ggthemes
 Suggests: 
     testthat,
     shinytest
+Remotes: 
+    Helseatlas/shinymap
