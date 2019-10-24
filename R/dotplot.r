@@ -12,13 +12,12 @@
 dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30, xmin = 0, xmax = 1) {
   library(ggplot2)
   library(magrittr)
-  library(plyr)
   boomr <- unique(all_data$bohf)
 
   farger <- shinymap::skde_colors(num = 5)[seq_len(length(boomr))]
   names(farger) <- boomr
   ymax <- plyr::round_any(max(all_data$tid_min) + 1, 10, f = ceiling)
-  
+
   ggplot2::ggplot(data = data_to_plot %>%
         dplyr::filter(dplyr::between(dato, xmin, xmax)),
         ggplot2::aes(x = dato, y = tid_min)) +
