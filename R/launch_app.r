@@ -18,10 +18,11 @@ launch_app <- function(dataset = NULL,
                        github_repo = NULL) {
 
   # Create a directory with all necessary data.
-  shinydir <- create_appdir(app_data = dataset,
-                            webpage_title = title,
-                            git_hash = git_hash,
-                            github_repo = github_repo)
+  shinydir <- SKDEr::create_appdir(app_data = dataset,
+                                   webpage_title = title,
+                                   package = "SKDEresultater",
+                                   git_hash = git_hash,
+                                   github_repo = github_repo)
 
   # Run the app
   if (publish_app) {
