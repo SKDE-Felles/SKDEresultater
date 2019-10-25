@@ -20,10 +20,10 @@ Imports:
     ggplot2,
     magrittr,
     dplyr,
-    shinymap (>= 0.8.0),
+    SKDEr,
     ggthemes
 Suggests: 
     testthat,
     shinytest
 Remotes: 
-    Helseatlas/shinymap
+    SKDE-Felles/SKDEr
