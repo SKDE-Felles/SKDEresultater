@@ -20,7 +20,7 @@ Imports:
     ggplot2,
     magrittr,
     dplyr,
-    skder,
+    SKDEr,
     ggthemes
 Suggests: 
     testthat,
