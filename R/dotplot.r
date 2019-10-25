@@ -14,7 +14,7 @@ dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30, xmin = 
   library(magrittr)
   boomr <- unique(all_data$bohf)
 
-  farger <- shinymap::skde_colors(num = 5)[seq_len(length(boomr))]
+  farger <- SKDEr::skde_colors(num = 5)[seq_len(length(boomr))]
   names(farger) <- boomr
   ymax <- plyr::round_any(max(all_data$tid_min) + 1, 10, f = ceiling)
 
