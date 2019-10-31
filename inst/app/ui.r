@@ -14,7 +14,7 @@ shinyUI(function(request) {
                            uiOutput("git_version")
                     ),
                     column(9,
-                           plotOutput("plot")
+                           plotly::plotlyOutput("plot")
                     )
                   )
 )})

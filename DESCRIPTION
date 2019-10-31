@@ -21,7 +21,8 @@ Imports:
     magrittr,
     dplyr,
     SKDEr (>= 0.2.0),
-    ggthemes
+    ggthemes,
+    plotly
 Suggests: 
     testthat,
     shinytest
