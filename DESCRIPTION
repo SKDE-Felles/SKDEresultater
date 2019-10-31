@@ -17,11 +17,11 @@ Imports:
     shinythemes,
     shinyWidgets,
     rsconnect,
-    ggplot2,
     magrittr,
     dplyr,
     SKDEr (>= 0.2.0),
-    ggthemes
+    plotly,
+    plyr
 Suggests: 
     testthat,
     shinytest

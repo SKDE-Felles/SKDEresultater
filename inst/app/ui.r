@@ -10,11 +10,10 @@ shinyUI(function(request) {
                   fluidRow(
                     column(3,
                            uiOutput("pick_bo"),
-                           uiOutput("pick_dates"),
                            uiOutput("git_version")
                     ),
                     column(9,
-                           plotOutput("plot")
+                           plotly::plotlyOutput("plot")
                     )
                   )
 )})
