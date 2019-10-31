@@ -2,18 +2,18 @@
 #'
 #' @param data_to_plot Data to plot
 #' @param ref_line Reference line
-#' @param xmin Lower limit on x-axes
-#' @param xmax Upper limit on x-axes
 #' @param all_data All the data (used to make median line)
 #'
 #' @return A plot
 #' @export
 #'
-dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30, xmin = 0, xmax = 1) {
+dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30) {
   boomr <- unique(all_data$bohf)
   farger <- SKDEr::skde_colors(num = 5)[seq_len(length(boomr))]
   names(farger) <- boomr
   ymax <- plyr::round_any(max(all_data$tid_min) + 1, 10, f = ceiling)
+  xmin <- min(all_data$dato)
+  xmax <- max(all_data$dato)
   xmedian <- median(all_data[["tid_min"]])
   xaxis <- list(title = "Dato",
                 showline = FALSE,
@@ -21,7 +21,7 @@ dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30, xmin = 
                 showticklabels = TRUE,
                 autotick = TRUE,
                 type = "date",
-                range = c(xmin, xmax),
+                range = c(xmax - 180, xmax),
                 fixedrange = FALSE,
                 rangeselector = list(
                   buttons = list(
