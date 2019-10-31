@@ -41,8 +41,19 @@ shiny::shinyServer(
         # Hash on web page, if given
         return(shiny::HTML(paste0("Versjon: ", version_num)))
       } else {
-        return("Versjon 0.1.0")
+        return("Versjon 0.2.0")
       }
+    })
+
+    output$pick_bo2 <- shiny::renderUI({
+      mulige_valg <- as.character(unique(SKDEresultater::testdata$bohf))
+      shinyWidgets::checkboxGroupButtons(
+        inputId = "valgtBo2",
+        choices = mulige_valg,
+        justified = TRUE,
+#        status = "primary",
+        checkIcon = list(yes = icon("ok", lib = "glyphicon"), no = icon("remove", lib = "glyphicon"))
+      )
     })
 
     output$plot <- shiny::renderPlot({
@@ -59,8 +70,32 @@ shiny::shinyServer(
       }
     })
 
+    output$plot2 <- shiny::renderPlot({
+      mydata <- SKDEresultater::testdata
+      data_to_plot <- dplyr::filter(mydata, mydata$bohf %in% input$valgtBo2)
+      if (!isTRUE(getOption("shiny.testmode"))) {
+        return(SKDEresultater::dotplot(data_to_plot = data_to_plot,
+                                       all_data = mydata,
+                                       ref_line = 30,
+                                       xmin = min(req(input$valgtDato2)),
+                                       xmax = max(req(input$valgtDato2))
+        )
+        )
+      }
+    })
+
     output$pick_dates <- shiny::renderUI({
       shiny::sliderInput("valgtDato",
+                         "Datoer:",
+                         min = min(SKDEresultater::testdata$dato),
+                         max = max(SKDEresultater::testdata$dato),
+                         value = c(max(SKDEresultater::testdata$dato) - 365,
+                                   max(SKDEresultater::testdata$dato)),
+                         timeFormat = "%d.%m.%Y")
+    })
+    
+    output$pick_dates2 <- shiny::renderUI({
+      shiny::sliderInput("valgtDato2",
                          "Datoer:",
                          min = min(SKDEresultater::testdata$dato),
                          max = max(SKDEresultater::testdata$dato),
