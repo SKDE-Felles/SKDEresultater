@@ -49,7 +49,7 @@ shiny::shinyServer(
       mydata <- SKDEresultater::testdata
       data_to_plot <- dplyr::filter(mydata, mydata$bohf %in% input$valgtBo)
       if (!isTRUE(getOption("shiny.testmode"))) {
-        return(SKDEresultater::dotplotly(data_to_plot = data_to_plot,
+        return(SKDEresultater::dotplot(data_to_plot = data_to_plot,
                                        all_data = mydata,
                                        ref_line = 30,
                                        xmin = min(req(input$valgtDato)),
