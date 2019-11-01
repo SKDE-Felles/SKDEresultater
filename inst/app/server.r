@@ -41,7 +41,7 @@ shiny::shinyServer(
         # Hash on web page, if given
         return(shiny::HTML(paste0("Versjon: ", version_num)))
       } else {
-        return("Versjon 0.1.0")
+        return("Versjon 0.2.0")
       }
     })
 
