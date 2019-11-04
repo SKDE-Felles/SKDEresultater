@@ -45,17 +45,6 @@ shiny::shinyServer(
       }
     })
 
-    output$pick_bo <- shiny::renderUI({
-      mulige_valg <- as.character(unique(SKDEresultater::testdata$bohf))
-      shinyWidgets::checkboxGroupButtons(
-        inputId = "valgtBo",
-        choices = mulige_valg,
-        justified = TRUE,
-#        status = "primary",
-        checkIcon = list(yes = icon("ok", lib = "glyphicon"), no = icon("remove", lib = "glyphicon"))
-      )
-    })
-
     output$plot <- shiny::renderPlot({
       if (length(input$valgtBo) == 0) {
         return(NULL)
@@ -86,6 +75,15 @@ shiny::shinyServer(
                          timeFormat = "%d.%m.%Y")
     })
 
+    output$pick_bo <- shiny::renderUI({
+      mulige_valg <- as.character(unique(SKDEresultater::testdata$bohf))
+      shinyWidgets::checkboxGroupButtons(
+        inputId = "valgtBo",
+        choices = mulige_valg,
+        justified = TRUE,
+        checkIcon = list(yes = icon("ok", lib = "glyphicon"), no = icon("remove", lib = "glyphicon"))
+      )
+    })
 
   }
 )
