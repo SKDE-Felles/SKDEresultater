@@ -9,21 +9,9 @@ shinyUI(function(request) {
                   )),
                   navbarPage(shiny::HTML("SKDE"), id="nav",
                              tabPanel("Kvalitet",
-                                      fluidRow(
-                                        column(3,
-                                               uiOutput("pick_bo"),
-                                               uiOutput("pick_dates"),
-                                               uiOutput("git_version")
-                                        ),
-                                        column(9,
-                                               plotOutput("plot")
-                                        )
-                                      )
-                             ),
-                             tabPanel("Variasjon",
-                                      uiOutput("pick_bo2"),
-                                      plotOutput("plot2"),
-                                      uiOutput("pick_dates2")
+                                      uiOutput("pick_bo"),
+                                      plotOutput("plot"),
+                                      uiOutput("pick_dates")
                              )
                   )
   )})

@@ -45,10 +45,10 @@ shiny::shinyServer(
       }
     })
 
-    output$pick_bo2 <- shiny::renderUI({
+    output$pick_bo <- shiny::renderUI({
       mulige_valg <- as.character(unique(SKDEresultater::testdata$bohf))
       shinyWidgets::checkboxGroupButtons(
-        inputId = "valgtBo2",
+        inputId = "valgtBo",
         choices = mulige_valg,
         justified = TRUE,
 #        status = "primary",
@@ -57,6 +57,9 @@ shiny::shinyServer(
     })
 
     output$plot <- shiny::renderPlot({
+      if (length(input$valgtBo) == 0) {
+        return(NULL)
+      }
       mydata <- SKDEresultater::testdata
       data_to_plot <- dplyr::filter(mydata, mydata$bohf %in% input$valgtBo)
       if (!isTRUE(getOption("shiny.testmode"))) {
@@ -70,21 +73,10 @@ shiny::shinyServer(
       }
     })
 
-    output$plot2 <- shiny::renderPlot({
-      mydata <- SKDEresultater::testdata
-      data_to_plot <- dplyr::filter(mydata, mydata$bohf %in% input$valgtBo2)
-      if (!isTRUE(getOption("shiny.testmode"))) {
-        return(SKDEresultater::dotplot(data_to_plot = data_to_plot,
-                                       all_data = mydata,
-                                       ref_line = 30,
-                                       xmin = min(req(input$valgtDato2)),
-                                       xmax = max(req(input$valgtDato2))
-        )
-        )
-      }
-    })
-
     output$pick_dates <- shiny::renderUI({
+      if (length(input$valgtBo) == 0) {
+        return(NULL)
+      }
       shiny::sliderInput("valgtDato",
                          "Datoer:",
                          min = min(SKDEresultater::testdata$dato),
@@ -93,36 +85,7 @@ shiny::shinyServer(
                                    max(SKDEresultater::testdata$dato)),
                          timeFormat = "%d.%m.%Y")
     })
-    
-    output$pick_dates2 <- shiny::renderUI({
-      shiny::sliderInput("valgtDato2",
-                         "Datoer:",
-                         min = min(SKDEresultater::testdata$dato),
-                         max = max(SKDEresultater::testdata$dato),
-                         value = c(max(SKDEresultater::testdata$dato) - 365,
-                                   max(SKDEresultater::testdata$dato)),
-                         timeFormat = "%d.%m.%Y")
-    })
 
-    output$pick_bo <- shiny::renderUI({
-      mulige_valg <- as.character(unique(SKDEresultater::testdata$bohf))
-      shinyWidgets::pickerInput(
-        inputId = "valgtBo",
-        label = "Velg boområde",
-        choices = mulige_valg,
-        selected = mulige_valg,
-        options = list(
-          `actions-box` = TRUE,
-          size = 10,
-          `selected-text-format` = "count > 0",
-          `deselect-all-text` = "Velg ingen",
-          `select-all-text` = "Velg alle",
-          `none-selected-text` = "Null",
-          `count-selected-text` = "{0} områder valgt (av {1})"
-        ),
-        multiple = TRUE
-      )
-    })
 
   }
 )
