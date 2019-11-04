@@ -4,8 +4,7 @@
 \alias{dotplot}
 \title{Make a plot}
 \usage{
-dotplot(data_to_plot = NULL, all_data = NULL, ref_line = 30,
-  xmin = 0, xmax = 1)
+dotplot(data_to_plot = NULL, all_data = NULL, ref_line = 30)
 }
 \arguments{
 \item{data_to_plot}{Data to plot}
@@ -13,10 +12,6 @@ dotplot(data_to_plot = NULL, all_data = NULL, ref_line = 30,
 \item{all_data}{All the data (used to make median line)}
 
 \item{ref_line}{Reference line}
-
-\item{xmin}{Lower limit on x-axes}
-
-\item{xmax}{Upper limit on x-axes}
 }
 \value{
 A plot

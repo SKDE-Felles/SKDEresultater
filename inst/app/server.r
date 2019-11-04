@@ -45,7 +45,7 @@ shiny::shinyServer(
       }
     })
 
-    output$plot <- shiny::renderPlot({
+    output$plot <- plotly::renderPlotly({
       if (length(input$valgtBo) == 0) {
         return(NULL)
       }
@@ -54,25 +54,10 @@ shiny::shinyServer(
       if (!isTRUE(getOption("shiny.testmode"))) {
         return(SKDEresultater::dotplot(data_to_plot = data_to_plot,
                                        all_data = mydata,
-                                       ref_line = 30,
-                                       xmin = min(req(input$valgtDato)),
-                                       xmax = max(req(input$valgtDato))
+                                       ref_line = 30
                                        )
         )
       }
-    })
-
-    output$pick_dates <- shiny::renderUI({
-      if (length(input$valgtBo) == 0) {
-        return(NULL)
-      }
-      shiny::sliderInput("valgtDato",
-                         "Datoer:",
-                         min = min(SKDEresultater::testdata$dato),
-                         max = max(SKDEresultater::testdata$dato),
-                         value = c(max(SKDEresultater::testdata$dato) - 365,
-                                   max(SKDEresultater::testdata$dato)),
-                         timeFormat = "%d.%m.%Y")
     })
 
     output$pick_bo <- shiny::renderUI({

@@ -10,8 +10,7 @@ shinyUI(function(request) {
                   navbarPage(shiny::HTML("SKDE"), id="nav",
                              tabPanel("Kvalitet",
                                       uiOutput("pick_bo"),
-                                      plotOutput("plot"),
-                                      uiOutput("pick_dates")
+                                      plotly::plotlyOutput("plot")
                              )
                   )
   )})
