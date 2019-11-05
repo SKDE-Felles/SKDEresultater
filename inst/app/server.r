@@ -46,6 +46,9 @@ shiny::shinyServer(
     })
 
     output$plot <- plotly::renderPlotly({
+      if (length(input$valgtBo) == 0) {
+        return(NULL)
+      }
       mydata <- SKDEresultater::testdata
       data_to_plot <- dplyr::filter(mydata, mydata$bohf %in% input$valgtBo)
       if (!isTRUE(getOption("shiny.testmode"))) {
@@ -59,21 +62,11 @@ shiny::shinyServer(
 
     output$pick_bo <- shiny::renderUI({
       mulige_valg <- as.character(unique(SKDEresultater::testdata$bohf))
-      shinyWidgets::pickerInput(
+      shinyWidgets::checkboxGroupButtons(
         inputId = "valgtBo",
-        label = "Velg boområde",
         choices = mulige_valg,
-        selected = mulige_valg,
-        options = list(
-          `actions-box` = TRUE,
-          size = 10,
-          `selected-text-format` = "count > 0",
-          `deselect-all-text` = "Velg ingen",
-          `select-all-text` = "Velg alle",
-          `none-selected-text` = "Null",
-          `count-selected-text` = "{0} områder valgt (av {1})"
-        ),
-        multiple = TRUE
+        justified = TRUE,
+        checkIcon = list(yes = icon("ok", lib = "glyphicon"), no = icon("remove", lib = "glyphicon"))
       )
     })
 

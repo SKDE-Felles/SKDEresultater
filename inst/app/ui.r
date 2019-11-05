@@ -7,13 +7,10 @@ shinyUI(function(request) {
                     tags$title("SKDE"),
                     tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
                   )),
-                  fluidRow(
-                    column(3,
-                           uiOutput("pick_bo"),
-                           uiOutput("git_version")
-                    ),
-                    column(9,
-                           plotly::plotlyOutput("plot")
-                    )
+                  navbarPage(shiny::HTML("SKDE"), id = "nav",
+                             tabPanel("Kvalitet",
+                                      uiOutput("pick_bo"),
+                                      plotly::plotlyOutput("plot")
+                             )
                   )
-)})
+  )})
