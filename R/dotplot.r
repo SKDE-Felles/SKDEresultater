@@ -81,5 +81,6 @@ dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30) {
                          name = "Median HN",
                          showlegend = TRUE) %>%
     plotly::layout(xaxis = xaxis,
-                   yaxis = yaxis)
+                   yaxis = yaxis) %>%
+    plotly::config(displayModeBar = FALSE)
 }
