@@ -40,8 +40,7 @@ dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30) {
                       label = "1 år",
                       step = "month",
                       stepmode = "todate")
-                    )),
-                rangeslider = list(type = "date"))
+                    )))
   yaxis <- list(title = "Antall minutter",
                 showgrid = TRUE,
                 zeroline = FALSE,
@@ -82,5 +81,6 @@ dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30) {
                          showlegend = TRUE) %>%
     plotly::layout(xaxis = xaxis,
                    yaxis = yaxis) %>%
-    plotly::config(displayModeBar = FALSE)
+    plotly::config(displayModeBar = FALSE) %>%
+    plotly::rangeslider(range = c(xmin, xmax), type = "date")
 }
