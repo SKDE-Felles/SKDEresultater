@@ -7,7 +7,7 @@ shinyUI(function(request) {
                     tags$title("SKDE"),
                     tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
                   )),
-                  navbarPage(shiny::HTML("SKDE"), id="nav",
+                  navbarPage(shiny::HTML("SKDE"), id = "nav",
                              tabPanel("Kvalitet",
                                       uiOutput("pick_bo"),
                                       plotly::plotlyOutput("plot")
