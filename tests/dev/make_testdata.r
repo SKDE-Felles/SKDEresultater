@@ -25,7 +25,7 @@ dato <- sample(seq(as.Date("2017/01/01"), as.Date("2019/10/10"), by = "day"), nu
 verdi <- rpois(num, lambda = 35)
 nordland <- data.frame(bohf = bo, dato = dato, tid_min = verdi)
 
-testdata <- rbind(finnmark, helgeland, unn, nordland)
+testdata <- rbind(finnmark, unn, nordland, helgeland)
 
 for (i in seq_len(length(testdata$tid_min))) {
   if ((testdata$bohf[i] == "UNN") & (testdata$dato[i] > "2019-06-01") & (testdata$tid_min[i] > 5)) {
