@@ -89,7 +89,8 @@ shiny::shinyServer(
       )
     })
 
-    output$pick_bo <- shiny::renderUI({
+
+    bo_picker <- reactive({
       mulige_valg <- c("Finnmark", "UNN", "Nordland", "Helgeland")
       shinyWidgets::checkboxGroupButtons(
         inputId = "valgtBo",
@@ -97,6 +98,14 @@ shiny::shinyServer(
         justified = TRUE,
         checkIcon = list(yes = icon("ok", lib = "glyphicon"), no = icon("remove", lib = "glyphicon"))
       )
+    })
+
+    output$pick_bo <- shiny::renderUI({
+      bo_picker()
+    })
+
+    output$pick_bo2 <- shiny::renderUI({
+      bo_picker()
     })
 
   }

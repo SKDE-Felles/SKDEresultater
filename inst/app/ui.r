@@ -14,7 +14,8 @@ shinyUI(function(request) {
                                       plotly::plotlyOutput("plot")
                              ),
                              tabPanel("Variasjon",
-                                      uiOutput("pick_variasjon")
+                                      uiOutput("pick_variasjon"),
+                                      uiOutput("pick_bo2")
                                       )
                   )
   )})
