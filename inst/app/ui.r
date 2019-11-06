@@ -9,8 +9,12 @@ shinyUI(function(request) {
                   )),
                   navbarPage(shiny::HTML("SKDE"), id = "nav",
                              tabPanel("Kvalitet",
+                                      uiOutput("pick_kvalitet"),
                                       uiOutput("pick_bo"),
                                       plotly::plotlyOutput("plot")
-                             )
+                             ),
+                             tabPanel("Variasjon",
+                                      uiOutput("pick_variasjon")
+                                      )
                   )
   )})

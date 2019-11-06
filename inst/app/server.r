@@ -49,8 +49,12 @@ shiny::shinyServer(
       if (length(input$valgtBo) == 0) {
         return(NULL)
       }
-      mydata <- SKDEresultater::testdata
-      data_to_plot <- dplyr::filter(mydata, mydata$bohf %in% input$valgtBo)
+      if (input$valgtKvalitet == "Trombolyse") {
+        mydata <- SKDEresultater::testdata
+        data_to_plot <- dplyr::filter(mydata, mydata$bohf %in% input$valgtBo)
+      } else {
+        return(NULL)
+      }
       if (!isTRUE(getOption("shiny.testmode"))) {
         return(SKDEresultater::dotplot(data_to_plot = data_to_plot,
                                        all_data = mydata,
@@ -60,8 +64,33 @@ shiny::shinyServer(
       }
     })
 
-    output$pick_bo <- shiny::renderUI({
+    data_to_plot <- shiny::reactive({
+      if (input$valgtKvalitet == "Trombolyse") {
+        return(SKDEresultater::testdata)
+      } else {
+        return(NULL)
+      }
+    })
+
+    output$pick_kvalitet <- shiny::renderUI({
       mulige_valg <- as.character(unique(SKDEresultater::testdata$bohf))
+      shinyWidgets::radioGroupButtons(
+        inputId = "valgtKvalitet",
+        choices = c("Trombolyse", "Hofteprotese"),
+        justified = TRUE
+      )
+    })
+
+    output$pick_variasjon <- shiny::renderUI({
+      shinyWidgets::radioGroupButtons(
+        inputId = "valgtVariasjon",
+        choices = c("Oversikt", "Gynekologi", "Fødselshjelp", "Dagkirurgi"),
+        justified = TRUE
+      )
+    })
+
+    output$pick_bo <- shiny::renderUI({
+      mulige_valg <- c("Finnmark", "UNN", "Nordland", "Helgeland")
       shinyWidgets::checkboxGroupButtons(
         inputId = "valgtBo",
         choices = mulige_valg,
