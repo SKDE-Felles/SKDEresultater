@@ -45,22 +45,11 @@ shiny::shinyServer(
       }
     })
 
-    output$plot <- plotly::renderPlotly({
+    output$plot_kvalitet <- shiny::renderUI({
       if (length(input$valgtBo) == 0) {
         return(NULL)
-      }
-      if (input$valgtKvalitet == "Trombolyse") {
-        mydata <- SKDEresultater::testdata
-        data_to_plot <- dplyr::filter(mydata, mydata$bohf %in% input$valgtBo)
       } else {
-        return(NULL)
-      }
-      if (!isTRUE(getOption("shiny.testmode"))) {
-        return(SKDEresultater::dotplot(data_to_plot = data_to_plot,
-                                       all_data = mydata,
-                                       ref_line = 30
-                                       )
-        )
+        plotly::plotlyOutput("plotly_plot")
       }
     })
 
@@ -89,8 +78,21 @@ shiny::shinyServer(
       )
     })
 
+    output$plotly_plot <- plotly::renderPlotly({
+      if (input$valgtKvalitet == "Trombolyse") {
+        mydata <- SKDEresultater::testdata
+        data_to_plot <- dplyr::filter(mydata, mydata$bohf %in% input$valgtBo)
+      } else {
+        return(NULL)
+      }
+      return(SKDEresultater::dotplot(data_to_plot = data_to_plot,
+                                     all_data = mydata,
+                                     ref_line = 30
+      )
+      )
+    })
 
-    bo_picker <- reactive({
+    bo_picker <- shiny::reactive({
       mulige_valg <- c("Finnmark", "UNN", "Nordland", "Helgeland")
       shinyWidgets::checkboxGroupButtons(
         inputId = "valgtBo",

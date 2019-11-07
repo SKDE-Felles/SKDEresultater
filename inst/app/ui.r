@@ -11,11 +11,11 @@ shinyUI(function(request) {
                              tabPanel("Kvalitet",
                                       uiOutput("pick_kvalitet"),
                                       uiOutput("pick_bo"),
-                                      plotly::plotlyOutput("plot")
+                                      uiOutput("plot_kvalitet")
                              ),
                              tabPanel("Variasjon",
                                       uiOutput("pick_variasjon"),
                                       uiOutput("pick_bo2")
-                                      )
+                             )
                   )
   )})
