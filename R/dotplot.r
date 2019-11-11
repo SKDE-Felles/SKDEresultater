@@ -5,6 +5,7 @@
 #' @param all_data All the data (used to make median line)
 #'
 #' @return A plot
+#' @importFrom rlang .data
 #' @export
 #'
 dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30) {
@@ -14,7 +15,7 @@ dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30) {
   ymax <- plyr::round_any(max(all_data$tid_min) + 1, 10, f = ceiling)
   xmin <- min(all_data$dato)
   xmax <- max(all_data$dato)
-  xmedian <- median(all_data$tid_min)
+  xmedian <- stats::median(all_data$tid_min)
   xaxis <- list(title = "",
                 showline = FALSE,
                 showgrid = FALSE,
@@ -37,7 +38,7 @@ dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30) {
                       stepmode = "todate"),
                     list(
                       count = 12,
-                      label = "1 år",
+                      label = "1 \u00e5r",
                       step = "month",
                       stepmode = "todate")
                     )))
@@ -50,13 +51,13 @@ dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30) {
                 range = c(0, ymax),
                 fixedrange = FALSE)
   data_to_plot %>%
-    dplyr::filter(dplyr::between(dato, xmin, xmax)) %>%
+    dplyr::filter(dplyr::between(.data$dato, xmin, xmax)) %>%
     plotly::plot_ly(x = ~dato,
                     y = ~tid_min) %>%
     plotly::add_markers(color = ~bohf,
                         colors = farger,
                         hoverinfo = "text",
-                        text = ~paste0("</br>Boområde: ", bohf,
+                        text = ~paste0("</br>Boomr\u00e5de: ", bohf,
                                        "</br>Dato: ", dato,
                                        "</br>Tid til beh.: ", tid_min, " min"
                         )) %>%
@@ -65,8 +66,8 @@ dotplot <- function(data_to_plot = NULL, all_data = NULL, ref_line = 30) {
                          y = ref_line,
                          yend = ref_line,
                          hoverinfo = "text",
-                         text = ~paste0("</br> Mål = ", ref_line, " min"),
-                         name = "Mål",
+                         text = ~paste0("</br> M\u00e5l = ", ref_line, " min"),
+                         name = "M\u00e5l",
                          color = I("red"),
                          showlegend = TRUE) %>%
     plotly::add_segments(x = xmin,

@@ -19,11 +19,16 @@ Imports:
     rsconnect,
     magrittr,
     dplyr,
+    tidyr,
+    d3heatmap,
     SKDEr (>= 0.2.0),
+    data,
+    rlang,
     plotly,
     plyr
 Suggests: 
     testthat,
     shinytest
 Remotes: 
-    SKDE-Felles/SKDEr
+    SKDE-Felles/SKDEr,
+    Helseatlas/data

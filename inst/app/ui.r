@@ -15,7 +15,7 @@ shinyUI(function(request) {
                              ),
                              tabPanel("Variasjon",
                                       uiOutput("pick_variasjon"),
-                                      uiOutput("pick_bo2")
+                                      uiOutput("plot_variasjon")
                              )
                   )
   )})
