@@ -27,5 +27,5 @@ Suggests:
     testthat,
     shinytest
 Remotes: 
-    SKDE-Felles/SKDEr
+    SKDE-Felles/SKDEr,
     Helseatlas/data
