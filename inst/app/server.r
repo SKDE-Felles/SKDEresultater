@@ -53,12 +53,25 @@ shiny::shinyServer(
       }
     })
 
-    data_to_plot <- shiny::reactive({
-      if (input$valgtKvalitet == "Trombolyse") {
-        return(SKDEresultater::testdata)
-      } else {
-        return(NULL)
+    output$plot_variasjon <- shiny::renderUI({
+      d3heatmap::d3heatmapOutput("heatmap")
+    })
+
+    output$heatmap <- d3heatmap::renderD3heatmap({
+      SKDEresultater::create_heatmap(data = variasjon_data())
+    })
+
+    variasjon_data <- shiny::reactive({
+      if (input$valgtVariasjon == "Gynekologi") {
+        return(data::gyn)
+      } else if (input$valgtVariasjon == "Fødselshjelp") {
+        return(data::fodsel)
+      } else if (input$valgtVariasjon == "Dagkirurgi") {
+        return(data::dagkir)
+      } else if (input$valgtVariasjon == "Kols") {
+        return(data::kols)
       }
+      return(NULL)
     })
 
     output$pick_kvalitet <- shiny::renderUI({
@@ -73,7 +86,7 @@ shiny::shinyServer(
     output$pick_variasjon <- shiny::renderUI({
       shinyWidgets::radioGroupButtons(
         inputId = "valgtVariasjon",
-        choices = c("Oversikt", "Gynekologi", "Fødselshjelp", "Dagkirurgi"),
+        choices = c("Gynekologi", "Fødselshjelp", "Dagkirurgi", "Kols"),
         justified = TRUE
       )
     })
@@ -105,10 +118,5 @@ shiny::shinyServer(
     output$pick_bo <- shiny::renderUI({
       bo_picker()
     })
-
-    output$pick_bo2 <- shiny::renderUI({
-      bo_picker()
-    })
-
   }
 )
