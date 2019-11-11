@@ -20,6 +20,7 @@ Imports:
     magrittr,
     dplyr,
     SKDEr (>= 0.2.0),
+    data,
     plotly,
     plyr
 Suggests: 
@@ -27,3 +28,4 @@ Suggests:
     shinytest
 Remotes: 
     SKDE-Felles/SKDEr
+    Helseatlas/data
