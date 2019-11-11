@@ -67,9 +67,17 @@ shiny::shinyServer(
       } else if (input$valgtVariasjon == "Fødselshjelp") {
         return(data::fodsel)
       } else if (input$valgtVariasjon == "Dagkirurgi") {
-        return(data::dagkir)
+        return(data::dagkir2)
       } else if (input$valgtVariasjon == "Kols") {
         return(data::kols)
+      } else if (input$valgtVariasjon == "Barn") {
+        return(data::barn)
+      } else if (input$valgtVariasjon == "Nyfødt") {
+        return(data::nyfodt)
+      } else if (input$valgtVariasjon == "Eldre") {
+        return(data::eldre)
+      } else if (input$valgtVariasjon == "Ortopedi") {
+        return(data::ortopedi)
       }
       return(NULL)
     })
@@ -86,7 +94,14 @@ shiny::shinyServer(
     output$pick_variasjon <- shiny::renderUI({
       shinyWidgets::radioGroupButtons(
         inputId = "valgtVariasjon",
-        choices = c("Gynekologi", "Fødselshjelp", "Dagkirurgi", "Kols"),
+        choices = c("Gynekologi",
+                    "Fødselshjelp",
+                    "Ortopedi",
+                    "Dagkirurgi",
+                    "Kols",
+                    "Eldre",
+                    "Nyfødt",
+                    "Barn"),
         justified = TRUE
       )
     })
