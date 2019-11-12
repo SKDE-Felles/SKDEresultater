@@ -2,7 +2,7 @@
 #'
 #' @param data Data to be plotted
 #'
-#' @return A d3heatmap
+#' @return A plotly heatmap
 #' @importFrom rlang .data
 #' @export
 #'
@@ -13,7 +13,7 @@ create_heatmap <- function(data = NULL) {
         tmp <- tidyr::unite(data, .data$level1_name, .data$level2_name, col = "combined", sep = ": ")
     } else if ("level1_name" %in% colnames(data)) {
         tmp <- data
-        tmp$combined <- data$level1_name
+        tmp$combined <- tmp$level1_name
     }
 
     spread_data <- tidyr::spread(tmp[, c("area", "area_name", "combined", "value")],
@@ -25,11 +25,15 @@ create_heatmap <- function(data = NULL) {
     spread_data$area_name <- NULL
     spread_data$area <- NULL
 
-    return(d3heatmap::d3heatmap(spread_data,
-                                scale = "column",
-                                colors = "Blues",
-                                dendrogram = "none"
-                                )
-           )
+    heatmap <- plotly::plot_ly(y = row.names(spread_data),
+                               x = names(spread_data),
+                               z = scale(spread_data),
+                               type = "heatmap",
+                               colors = SKDEr::skde_colors(num = 7),
+                               showscale = FALSE
+                               ) %>%
+               plotly::config(displayModeBar = FALSE)
+
+    return(heatmap)
 
 }
