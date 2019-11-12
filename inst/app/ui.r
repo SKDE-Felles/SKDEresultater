@@ -8,14 +8,14 @@ shinyUI(function(request) {
                     tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
                   )),
                   navbarPage(shiny::HTML("SKDE"), id = "nav",
+                             tabPanel("Variasjon",
+                                      uiOutput("pick_variasjon"),
+                                      uiOutput("plot_variasjon")
+                             ),
                              tabPanel("Kvalitet",
                                       uiOutput("pick_kvalitet"),
                                       uiOutput("pick_bo"),
                                       uiOutput("plot_kvalitet")
-                             ),
-                             tabPanel("Variasjon",
-                                      uiOutput("pick_variasjon"),
-                                      uiOutput("plot_variasjon")
                              )
                   )
   )})

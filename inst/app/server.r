@@ -54,10 +54,10 @@ shiny::shinyServer(
     })
 
     output$plot_variasjon <- shiny::renderUI({
-      d3heatmap::d3heatmapOutput("heatmap")
+      plotly::plotlyOutput("heatmap", width = "auto", height = "800px")
     })
 
-    output$heatmap <- d3heatmap::renderD3heatmap({
+    output$heatmap <- plotly::renderPlotly({
       SKDEresultater::create_heatmap(data = variasjon_data())
     })
 
@@ -94,8 +94,8 @@ shiny::shinyServer(
     output$pick_variasjon <- shiny::renderUI({
       shinyWidgets::radioGroupButtons(
         inputId = "valgtVariasjon",
-        choices = c("Gynekologi",
-                    "Fødselshjelp",
+        choices = c("Fødselshjelp",
+                    "Gynekologi",
                     "Ortopedi",
                     "Dagkirurgi",
                     "Kols",

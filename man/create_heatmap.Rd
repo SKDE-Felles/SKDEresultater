@@ -10,7 +10,7 @@ create_heatmap(data = NULL)
 \item{data}{Data to be plotted}
 }
 \value{
-A d3heatmap
+A plotly heatmap
 }
 \description{
 Title
