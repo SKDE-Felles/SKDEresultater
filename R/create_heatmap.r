@@ -27,9 +27,9 @@ create_heatmap <- function(data = NULL) {
 
     heatmap <- plotly::plot_ly(y = row.names(spread_data),
                                x = names(spread_data),
-                               z = scale(spread_data),
+                               z = abs(scale(spread_data)),
                                type = "heatmap",
-                               colors = SKDEr::skde_colors(num = 7),
+                               colors = c("white", SKDEr::skde_colors(num = 7)),
                                showscale = FALSE
                                ) %>%
                plotly::config(displayModeBar = FALSE)
