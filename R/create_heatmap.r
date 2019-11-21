@@ -24,10 +24,11 @@ create_heatmap <- function(data = NULL) {
     row.names(spread_data) <- spread_data$area_name
     spread_data$area_name <- NULL
     spread_data$area <- NULL
+    
+    spread_data <- abs(scale(spread_data))
 
     return(d3heatmap::d3heatmap(spread_data,
-                                scale = "column",
-                                colors = "Blues",
+                                colors = c("white", SKDEr::skde_colors(num = 7)),
                                 dendrogram = "none"
                                 )
            )

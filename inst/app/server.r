@@ -94,8 +94,8 @@ shiny::shinyServer(
     output$pick_variasjon <- shiny::renderUI({
       shinyWidgets::radioGroupButtons(
         inputId = "valgtVariasjon",
-        choices = c("Gynekologi",
-                    "Fødselshjelp",
+        choices = c("Fødselshjelp",
+                    "Gynekologi",
                     "Ortopedi",
                     "Dagkirurgi",
                     "Kols",
