@@ -24,7 +24,8 @@ Imports:
     data,
     rlang,
     plotly,
-    plyr
+    plyr,
+    heatmaply
 Suggests: 
     testthat,
     shinytest
