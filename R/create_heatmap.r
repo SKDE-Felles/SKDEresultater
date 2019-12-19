@@ -16,7 +16,6 @@ create_heatmap <- function(data = NULL, type = "plotly") {
         tmp <- data
         tmp$combined <- tmp$level1_name
     }
-    
     spread_data <- tidyr::spread(tmp[, c("area", "area_name", "combined", "value")],
                                  key = .data$combined,
                                  value = .data$value
@@ -25,7 +24,6 @@ create_heatmap <- function(data = NULL, type = "plotly") {
     row.names(spread_data) <- spread_data$area_name
     spread_data$area_name <- NULL
     spread_data$area <- NULL
-    
     if (type == "plotlty") {
         heatmap <- plotly::plot_ly(
             y = row.names(spread_data),
@@ -38,17 +36,16 @@ create_heatmap <- function(data = NULL, type = "plotly") {
             plotly::config(displayModeBar = FALSE)
     } else if (type == "heatmaply") {
         heatmap <-  heatmaply::heatmaply(
-            spread_data, 
+            spread_data,
             plot_method = "plotly",
-            dendrogram = "none", 
+            dendrogram = "none",
             scale = "column",
             column_text_angle = 45,
             colors = c("white", SKDEr::skde_colors(num = 7)),
             grid_gap = 1,
-            hide_colorbar =TRUE
-        ) %>% plotly::config(displayModeBar = FALSE)
-        
+            hide_colorbar = TRUE
+        ) %>%
+            plotly::config(displayModeBar = FALSE)
     }
     return(heatmap)
-    
 }
