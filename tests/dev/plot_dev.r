@@ -63,7 +63,7 @@ spread_data2 <- tidyr::spread(tmp[, c("area", "area_name", "combined", "value")]
                              value = .data$value
 )
 spread_data2 <- dplyr::filter(spread_data2, .data$area != 8888)
-spread_data2[,3] <- scale(spread_data2)
+spread_data2[, 3] <- scale(spread_data2)
 row.names(spread_data2) <- spread_data2$area_name
 spread_data2$area_name <- NULL
 spread_data2$area <- NULL
@@ -77,6 +77,3 @@ plotly::plot_ly(y = row.names(spread_data2),
                 showscale = FALSE
                 ) %>%
   plotly::config(displayModeBar = FALSE)
-
-
-
