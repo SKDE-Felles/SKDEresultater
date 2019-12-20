@@ -50,7 +50,7 @@ shiny::shinyServer(
       plotly::plotlyOutput("heatmap", width = "auto", height = "800px")
     })
     output$heatmap <- plotly::renderPlotly({
-      SKDEresultater::create_heatmap(data = variasjon_data(), type = "heatmaply")
+      SKDEresultater::create_heatmap(data = variasjon_data())
     })
     variasjon_data <- shiny::reactive({
       if (input$valgtVariasjon == "Gynekologi") {
@@ -117,7 +117,7 @@ shiny::shinyServer(
       )
     })
     output$pick_bo <- shiny::renderUI({
-      bo_picker() 
+      bo_picker()
     })
   }
 )

@@ -7,7 +7,7 @@
 #' @importFrom rlang .data
 #' @export
 #'
-create_heatmap <- function(data = NULL, type = "plotly") {
+create_heatmap <- function(data = NULL, type = "heatmaply") {
     if ("level3_name" %in% colnames(data)) {
         tmp <- tidyr::unite(data, .data$level1_name, .data$level2_name, .data$level3_name, col = "combined", sep = ": ")
     } else if ("level2_name" %in% colnames(data)) {
@@ -24,7 +24,7 @@ create_heatmap <- function(data = NULL, type = "plotly") {
     row.names(spread_data) <- spread_data$area_name
     spread_data$area_name <- NULL
     spread_data$area <- NULL
-    if (type == "plotlty") {
+    if (type == "plotly") {
         heatmap <- plotly::plot_ly(
             y = row.names(spread_data),
             x = names(spread_data),
