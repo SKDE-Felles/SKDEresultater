@@ -7,19 +7,24 @@ if (file.exists("data/data.RData")) {
 
 shiny::shinyServer(
   function(input, output) {
+
     if (!exists("app_data")) {
       app_data <- NULL
     }
+
     if (!exists("git_hash")) {
       git_hash <- NULL
     }
+
     if (!exists("github_repo")) {
       github_repo <- NULL
     }
+
     if (isTRUE(getOption("shiny.testmode"))) {
       # Load static/dummy data if this is a test run
       app_data <- SKDEresultater::testdata
     }
+
     output$git_version <- shiny::renderUI({
       if (!is.null(git_hash)) {
         if (is.null(github_repo)) {
@@ -39,6 +44,7 @@ shiny::shinyServer(
         return("Versjon 0.4.0")
       }
     })
+
     output$plot_kvalitet <- shiny::renderUI({
       if (length(input$valgtBo) == 0) {
         return(NULL)
@@ -46,12 +52,15 @@ shiny::shinyServer(
         plotly::plotlyOutput("plotly_plot")
       }
     })
+
     output$plot_variasjon <- shiny::renderUI({
       plotly::plotlyOutput("heatmap", width = "auto", height = "800px")
     })
+
     output$heatmap <- plotly::renderPlotly({
       SKDEresultater::create_heatmap(data = variasjon_data())
     })
+
     variasjon_data <- shiny::reactive({
       if (input$valgtVariasjon == "Gynekologi") {
         return(data::gyn)
@@ -72,6 +81,7 @@ shiny::shinyServer(
       }
       return(NULL)
     })
+
     output$pick_kvalitet <- shiny::renderUI({
       mulige_valg <- as.character(unique(SKDEresultater::testdata$bohf))
       shinyWidgets::radioGroupButtons(
@@ -80,6 +90,7 @@ shiny::shinyServer(
         justified = TRUE
       )
     })
+
     output$pick_variasjon <- shiny::renderUI({
       shinyWidgets::radioGroupButtons(
         inputId = "valgtVariasjon",
@@ -94,6 +105,7 @@ shiny::shinyServer(
         justified = TRUE
       )
     })
+
     output$plotly_plot <- plotly::renderPlotly({
       if (input$valgtKvalitet == "Trombolyse") {
         mydata <- SKDEresultater::testdata
@@ -107,6 +119,7 @@ shiny::shinyServer(
       )
       )
     })
+
     bo_picker <- shiny::reactive({
       mulige_valg <- c("Finnmark", "UNN", "Nordland", "Helgeland")
       shinyWidgets::checkboxGroupButtons(
@@ -116,6 +129,7 @@ shiny::shinyServer(
         checkIcon = list(yes = icon("ok", lib = "glyphicon"), no = icon("remove", lib = "glyphicon"))
       )
     })
+
     output$pick_bo <- shiny::renderUI({
       bo_picker()
     })
