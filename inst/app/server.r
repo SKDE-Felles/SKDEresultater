@@ -25,26 +25,6 @@ shiny::shinyServer(
       app_data <- SKDEresultater::testdata
     }
 
-    output$git_version <- shiny::renderUI({
-      if (!is.null(git_hash)) {
-        if (is.null(github_repo)) {
-          version_num <- substr(git_hash, 1, 8)
-        } else {
-          version_num <- paste0("<a href='https://github.com/",
-                                github_repo,
-                                "/tree/",
-                                git_hash,
-                                "'>",
-                                substr(git_hash, 1, 8),
-                                "</a>")
-        }
-        # Hash on web page, if given
-        return(shiny::HTML(paste0("Versjon: ", version_num)))
-      } else {
-        return("Versjon 0.4.0")
-      }
-    })
-
     output$plot_kvalitet <- shiny::renderUI({
       if (length(input$valgtBo) == 0) {
         return(NULL)

@@ -5,8 +5,7 @@
 \title{Launch the application, either locally or to shinyapps.io}
 \usage{
 launch_app(dataset = NULL, title = NULL, publish_app = FALSE,
-  name = "experimental", shiny_account = "skde", git_hash = NULL,
-  github_repo = NULL)
+  name = "experimental", shiny_account = "skde")
 }
 \arguments{
 \item{dataset}{The data set to be loaded into the application}
@@ -18,10 +17,6 @@ launch_app(dataset = NULL, title = NULL, publish_app = FALSE,
 \item{name}{The appName of the deployed shiny application (default = "experimental")}
 
 \item{shiny_account}{Which shiny account on shinyapps.io (default = "skde")}
-
-\item{git_hash}{Current git sha1 hash}
-
-\item{github_repo}{Current github repository}
 }
 \description{
 Launch the application, either locally or to shinyapps.io

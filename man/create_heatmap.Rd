@@ -4,10 +4,12 @@
 \alias{create_heatmap}
 \title{Title}
 \usage{
-create_heatmap(data = NULL)
+create_heatmap(data = NULL, type = "plotly")
 }
 \arguments{
 \item{data}{Data to be plotted}
+
+\item{type}{R-package to generate the plot. c("plotly", "heatmaply")}
 }
 \value{
 A plotly heatmap
