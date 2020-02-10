@@ -7,9 +7,6 @@ rsconnect::setAccountInfo(name   = Sys.getenv("shinyapps_name"),
                           secret = Sys.getenv("shinyapps_secret")
                           )
 
-git_hash <- Sys.getenv("TRAVIS_COMMIT")
-github_account <- Sys.getenv("TRAVIS_REPO_SLUG")
-
 if (Sys.getenv("TRAVIS_BRANCH") == "master") {
   app_name <- "SKDEresultater"
 } else {
@@ -19,7 +16,5 @@ if (Sys.getenv("TRAVIS_BRANCH") == "master") {
 SKDEresultater::launch_app(
   dataset = SKDEresultater::testdata,
   publish_app = TRUE,
-  name = app_name,
-  git_hash = git_hash,
-  github_repo = github_account
+  name = app_name
 )
