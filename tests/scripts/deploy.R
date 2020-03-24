@@ -1,6 +1,6 @@
 install.packages("remotes")
 
-remotes::install_github("skde-felles/SKDEresultater", ref = Sys.getenv("TRAVIS_BRANCH"))
+remotes::install_github("mong/SKDEresultater", ref = Sys.getenv("TRAVIS_BRANCH"))
 
 rsconnect::setAccountInfo(name   = Sys.getenv("shinyapps_name"),
                           token  = Sys.getenv("shinyapps_token"),
